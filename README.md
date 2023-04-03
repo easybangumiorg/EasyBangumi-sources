@@ -18,7 +18,7 @@
     {
         "name": "",
         "pkg": "",
-        "icoon": "",
+        "icon": "",
         "apk": "",
         "version": "",
         "nsfw": 0,
@@ -35,7 +35,7 @@
     {
         "name": "樱花动漫P",
         "pkg": "com.heyanle.easybangumi_extension",
-        "icoon": "yhdm.png",
+        "icon": "yhdm.png",
         "apk": "easybangumi-yhdmp-v1.0.apk",
         "version": "1.0",
         "nsfw": 0,

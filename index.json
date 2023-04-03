@@ -2,7 +2,7 @@
     {
         "name": "樱花动漫P",
         "pkg": "com.heyanle.easybangumi_extension",
-        "icoon": "yhdm.png",
+        "icon": "yhdm.png",
         "apk": "easybangumi-yhdmp-v1.0.apk",
         "version": "1.0",
         "nsfw": 0,
@@ -19,7 +19,7 @@
     {
         "name": "次元城动漫",
         "pkg": "org.easybangumi.extension.zh.cycdm",
-        "icoon": "cycdm.png",
+        "icon": "cycdm.png",
         "apk": "easybangumi-cycdm-v1.3.apk",
         "version": "1.3",
         "nsfw": 0,
