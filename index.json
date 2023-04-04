@@ -2,7 +2,7 @@
     {
         "name": "樱花动漫P",
         "pkg": "com.heyanle.easybangumi_extension",
-        "icon": "yhdm.png",
+        "icon": "yhdmp.png",
         "apk": "easybangumi-yhdmp-v1.0.apk",
         "version": "1.0",
         "nsfw": 0,
@@ -30,6 +30,23 @@
                 "name": "次元城动漫",
                 "baseURL": "https://cycity.moe/",
                 "hasCloudflare": 1
+            }
+        ]
+    },
+    {
+        "name": "樱花动漫",
+        "pkg": "com.heyanle.easybangumi_extension.yhdm",
+        "icon": "yhdm.png",
+        "apk": "easybangumi-yhdm-v1.0.apk",
+        "version": "1.0",
+        "nsfw": 0,
+        "flag": "P",
+        "targetAPI": 1,
+        "sources": [
+            {
+                "name": "樱花动漫",
+                "baseURL": "http://m.yinghuacd.com",
+                "hasCloudflare": 0
             }
         ]
     }
