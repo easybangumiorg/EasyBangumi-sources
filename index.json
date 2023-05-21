@@ -34,6 +34,23 @@
         ]
     },
     {
+        "name": "GiriGiriLove",
+        "pkg": "org.easybangumi.extension.girigirilove",
+        "icon": "ggl.png",
+        "apk": "easybangumi-girigirilove-v1.0.apk",
+        "version": "1.0",
+        "nsfw": 0,
+        "flag": "A",
+        "targetAPI": 1,
+        "sources": [
+            {
+                "name": "GiriGiriLove",
+                "baseURL": "https://anime.girigirilove.com/",
+                "hasCloudflare": 0
+            }
+        ]
+    },
+    {
         "name": "樱花动漫",
         "pkg": "com.heyanle.easybangumi_extension.yhdm",
         "icon": "yhdm.png",
