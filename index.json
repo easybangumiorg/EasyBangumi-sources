@@ -51,6 +51,23 @@
         ]
     },
     {
+        "name": "Anime1",
+        "pkg": "com.heyanle.easybangumi_extension.animone",
+        "icon": "anim1.png",
+        "apk": "easybangumi-animone-v1.0.apk",
+        "version": "1.0",
+        "nsfw": 0,
+        "flag": "A",
+        "targetAPI": 1,
+        "sources": [
+            {
+                "name": "anime1",
+                "baseURL": "https://anime1.me/",
+                "hasCloudflare": 0
+            }
+        ]
+    },
+    {
         "name": "樱花动漫",
         "pkg": "com.heyanle.easybangumi_extension.yhdm",
         "icon": "yhdm.png",
