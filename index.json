@@ -1,27 +1,10 @@
 [
     {
-        "name": "樱花动漫P",
-        "pkg": "com.heyanle.easybangumi_extension",
-        "icon": "yhdmp.png",
-        "apk": "easybangumi-yhdmp-v1.0.apk",
-        "version": "1.0",
-        "nsfw": 0,
-        "flag": "P U",
-        "targetAPI": 1,
-        "sources": [
-            {
-                "name": "樱花动漫P",
-                "baseURL": "https://m.yhdmp.com/",
-                "hasCloudflare": 0
-            }
-        ]
-    },
-    {
         "name": "次元城动漫",
-        "pkg": "org.easybangumi.extension.zh.cycdm",
+        "pkg": "org.easybangumi.extension.zh.cycdmpc",
         "icon": "cycdm.png",
-        "apk": "easybangumi-cycdm-v1.4.apk",
-        "version": "1.4",
+        "apk": "easybangumi-cycdm-v1.0.apk",
+        "version": "1.0",
         "nsfw": 0,
         "flag": "A",
         "targetAPI": 1,
