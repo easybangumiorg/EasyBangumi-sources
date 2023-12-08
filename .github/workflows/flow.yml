@@ -30,8 +30,7 @@ jobs:
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git checkout public
-          git add repository/*
-          git commit -a -m "[auto] github action commit"
+          git rm action/extension/tmp
 
       - name: Push changes
         uses: ad-m/github-push-action@master
