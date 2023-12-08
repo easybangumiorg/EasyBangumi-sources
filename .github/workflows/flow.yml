@@ -18,21 +18,15 @@ jobs:
         with:
           persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
           fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
+          ref: main
+          path: main
       - name: Parse extension
         run: | 
-          cd action/extension
+          cd main/action/extension
           npm install -g typescript
           npm install
           tsc
           node src/extension_parse.js
-
-      - name: Commit files
-        run: |
-          pwd
-          ls
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-
       - uses: actions/checkout@v4
         with:
           persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
@@ -45,7 +39,9 @@ jobs:
           cd public
           mkdir -p repository
           git rm -r repository
-          mv ../repository . -f
+          mv ../main/repository . -f
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git add .
           git commit -m "[auto] extension parse"
 
