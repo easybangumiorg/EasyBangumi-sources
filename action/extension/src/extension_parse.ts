@@ -53,13 +53,10 @@ type ExtensionPushItem = {
 };
 
 async function parseApk(url: string, fileName: string, iconPath: string): Promise<ApkInfo | undefined> {
-    console.log(url);
-    console.log(fileName);
     const resp = await fetch(url, op);
     const respBuffer = await resp.arrayBuffer();
     const path = await writeToFile(tmpDir + "/" + fileName, Buffer.from(respBuffer));
 
-    console.log(path);
     const apk = new node_apk.Apk(path);
     const manifest = await apk.getManifestInfo();
     const res = apk.getResources
@@ -96,7 +93,6 @@ async function parseApk(url: string, fileName: string, iconPath: string): Promis
 
     const iconBytes = await apk.extract(resources.resolve(manifest.applicationIcon)[0].value)
     await writeToFile(iconPath, iconBytes)
-    console.log(iconPath);
 
     const info = {
         package: manifest.package,
@@ -215,7 +211,7 @@ async function main() {
 
     if (!(data instanceof Buffer)) {
         console.log(data)
-        console.log("插件Release信息错误 解析结束")
+        console.log("source json error")
     } else {
         let json = data.toString();
         let plugins = JSON.parse(json)["plugins"];
@@ -225,6 +221,7 @@ async function main() {
             let count = 3;
             while (count > 0) {
                 try {
+                    console.log(count + "parsing" + element)
                     const parse = await parseRepoInfo({ release_url: element });
                     if(parse != undefined){
                         res.push(parse);
@@ -235,7 +232,7 @@ async function main() {
                     console.log(e);
                 }
                 count--;
-                console.log(count + "解析失败重试")
+                console.log(count + "parse error retry" + element)
             }
         }
         await deleteFile(extensionRepositoryDir + "/" + extensionJsonName);
