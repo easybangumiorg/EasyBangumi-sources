@@ -1,0 +1,37 @@
+name: Plugin CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
+          fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
+      
+      - name: 构建插件信息
+        run: |
+          cd action/extension
+          npm install -g typescript
+          npm install
+          tsc
+          node src/extension_parse.js
+
+      - name: Commit files
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add /repository/*
+          git commit -a -m "[auto] github action commit"
+
+      - name: Push changes
+         uses: ad-m/github-push-action@master
+         with:
+           github_token: ${{ secrets.token }}
