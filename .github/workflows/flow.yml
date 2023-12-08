@@ -38,6 +38,7 @@ jobs:
       - name: Commit
         run: |
           cd public
+          mkdirs repository
           git rm repository/*
           mv ../repository . -f
           git add .
