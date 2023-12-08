@@ -10,7 +10,10 @@ const sourceJson = "../../extension.json";
 const repositoryDir = "../../repository";
 
 const extensionRepositoryDir = repositoryDir + "/extension";
+const extensionIconDir = extensionRepositoryDir + "/icon";
 const extensionJsonName = "extension.json";
+
+var iconCount = 0;
 
 const tmpDir = "./tmp";
 
@@ -52,7 +55,7 @@ type ExtensionPushItem = {
     release_url: string,
 };
 
-async function parseApk(url: string, fileName: string, iconPath: string): Promise<ApkInfo | undefined> {
+async function parseApk(url: string, fileName: string): Promise<ApkInfo | undefined> {
     const resp = await fetch(url, op);
     const respBuffer = await resp.arrayBuffer();
     const path = await writeToFile(tmpDir + "/" + fileName, Buffer.from(respBuffer));
@@ -92,12 +95,14 @@ async function parseApk(url: string, fileName: string, iconPath: string): Promis
     }
 
     const iconBytes = await apk.extract(resources.resolve(manifest.applicationIcon)[0].value)
-    await writeToFile(iconPath, iconBytes)
+    const iconFileName = manifest.package + ".png";
+
+    await writeToFile(extensionIconDir + "/" + iconFileName, iconBytes)
 
     const info = {
         package: manifest.package,
         label: label,
-        icon: iconPath,
+        icon: iconFileName,
         versionName: manifest.versionName,
         versionCode: manifest.versionCode,
         mateData: metaMap,
@@ -108,12 +113,9 @@ async function parseApk(url: string, fileName: string, iconPath: string): Promis
 }
 
 async function parseRepoInfo(publicItem: ExtensionPushItem): Promise<ExtensionItem | undefined> {
-    await mkdirs(tmpDir);
-    await mkdirs(extensionRepositoryDir);
 
     const releaseUrl = publicItem.release_url;
 
-    console.log(releaseUrl);
     const info = releaseUrl.substring(releaseUrl.indexOf(github) + github.length).split("/");
     const user = info[0], repo = info[1];
 
@@ -128,12 +130,10 @@ async function parseRepoInfo(publicItem: ExtensionPushItem): Promise<ExtensionIt
 
     const apkName = assetsRespJson[0]["name"];
     const downloadUrl = assetsRespJson[0]["browser_download_url"];
-
-    const pngName = apkName + ".png";
-    const pngFile = extensionRepositoryDir + "/" + pngName;
+   
 
     // app 数据
-    const apkInfo = await parseApk(downloadUrl, apkName + ".apk", pngFile);
+    const apkInfo = await parseApk(downloadUrl, apkName + ".apk");
 
     if (apkInfo == undefined) {
         return undefined;
@@ -159,7 +159,7 @@ async function parseRepoInfo(publicItem: ExtensionPushItem): Promise<ExtensionIt
     return {
         package: apkInfo.package,
         label: apkInfo.label,
-        icon: pngName,
+        icon: apkInfo.icon,
         versionName: apkInfo.versionName,
         versionCode: apkInfo.versionCode,
         downloadUrl: downloadUrl,
@@ -205,8 +205,11 @@ function read(file: string): Promise<Buffer | NodeJS.ErrnoException | null> {
 
 async function main() {
     await mkdirs(tmpDir);
+    await mkdirs(repositoryDir)
     await mkdirs(extensionRepositoryDir);
-    await mkdirs(extensionJsonName);
+    await deleteFile(extensionIconDir);
+    await mkdirs(extensionIconDir);
+
     const data = await read(sourceJson);
 
     if (!(data instanceof Buffer)) {
