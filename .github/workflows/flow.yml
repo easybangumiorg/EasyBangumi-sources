@@ -39,7 +39,7 @@ jobs:
         run: |
           cd public
           mkdir -p repository
-          git rm repository/*
+          git rm repository
           mv ../repository . -f
           git add .
           git commit -m "[auto] extension parse"
