@@ -32,6 +32,6 @@ jobs:
           git commit -a -m "[auto] github action commit"
 
       - name: Push changes
-         uses: ad-m/github-push-action@master
+        uses: ad-m/github-push-action@master
          with:
            github_token: ${{ secrets.token }}
