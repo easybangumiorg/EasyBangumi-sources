@@ -18,6 +18,7 @@ var iconCount = 0;
 
 const tmpDir = "./tmp";
 
+const githubUrl = "https://github.com/{user}/{repo}";
 const allReleaseApi = "https://api.github.com/repos/{user}/{repo}/releases";
 const repoApi = "https://api.github.com/repos/{user}/{repo}";
 
@@ -48,7 +49,8 @@ type ExtensionItem = {
     icon: string,
     versionName: string,
     versionCode: number,
-    downloadUrl: string,
+    fileUrl: string,
+    gitUrl: string,
     libApiVersion: number,
     desc: string,
     author: string,
@@ -177,7 +179,8 @@ async function parseRepoInfo(publicItem: ExtensionPushItem): Promise<ExtensionIt
         icon: apkInfo.icon,
         versionName: apkInfo.versionName,
         versionCode: apkInfo.versionCode,
-        downloadUrl: downloadUrl,
+        fileUrl: downloadUrl,
+        gitUrl: format(githubUrl, { user: user, repo: repo }),
         libApiVersion: l,
         desc: desc,
         author: user,
