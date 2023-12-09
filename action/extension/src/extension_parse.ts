@@ -5,6 +5,7 @@ import XmlElement from 'node-apk/build/lib/xml';
 import { type } from 'os';
 import { buffer } from 'stream/consumers';
 import format = require('string-format');
+import md5 = require('ts-md5');
 
 const sourceJson = "../../extension.json";
 const repositoryDir = "../../repository";
@@ -33,6 +34,8 @@ type ApkInfo = {
     package: string,
     label: string,
     icon: string,
+    fileSize: number,
+    md5: string,
     versionName: string,
     versionCode: number,
     mateData: Map<string, string>,
@@ -49,6 +52,8 @@ type ExtensionItem = {
     libApiVersion: number,
     desc: string,
     author: string,
+    md5: string,
+    fileSize: number,
 };
 
 type ExtensionPushItem = {
@@ -58,7 +63,15 @@ type ExtensionPushItem = {
 async function parseApk(url: string, fileName: string): Promise<ApkInfo | undefined> {
     const resp = await fetch(url, op);
     const respBuffer = await resp.arrayBuffer();
-    const path = await writeToFile(tmpDir + "/" + fileName, Buffer.from(respBuffer));
+    const buffer = Buffer.from(respBuffer);
+    const path = await writeToFile(tmpDir + "/" + fileName, buffer);
+    const md = new md5.Md5();
+    const hash = md.appendByteArray(buffer).end(false);
+    if(typeof hash != 'string'){
+        return undefined;
+    }
+
+
 
     const apk = new node_apk.Apk(path);
     const manifest = await apk.getManifestInfo();
@@ -106,6 +119,8 @@ async function parseApk(url: string, fileName: string): Promise<ApkInfo | undefi
         versionName: manifest.versionName,
         versionCode: manifest.versionCode,
         mateData: metaMap,
+        md5: hash,
+        fileSize: buffer.byteLength,
     }
 
     apk.close();
@@ -166,6 +181,8 @@ async function parseRepoInfo(publicItem: ExtensionPushItem): Promise<ExtensionIt
         libApiVersion: l,
         desc: desc,
         author: user,
+        md5: apkInfo.md5,
+        fileSize: apkInfo.fileSize,
     }
 }
 
