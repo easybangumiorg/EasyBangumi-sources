@@ -57,7 +57,6 @@ type ExtensionItem = {
     author: string,
     md5: string,
     fileSize: number,
-    releaseDesc: string,
 };
 
 type ExtensionPushItem = {
@@ -164,7 +163,11 @@ async function parseRepoInfo(publicItem: ExtensionPushItem): Promise<ExtensionIt
     const repoRespJson = await repoResp.json();
 
     // 仓库描述
-    const desc = releaseRespJson["description"];
+    const desc = releaseRespJson[0]["body"];
+    let d = desc;
+    if(d == undefined){
+        d = "";
+    }
 
     const libApiVersion = apkInfo.mateData.get("easybangumi.extension.lib.version");
     if (libApiVersion == undefined) {
@@ -188,7 +191,6 @@ async function parseRepoInfo(publicItem: ExtensionPushItem): Promise<ExtensionIt
         author: user,
         md5: apkInfo.md5,
         fileSize: apkInfo.fileSize,
-        releaseDesc: desc
     }
 }
 
