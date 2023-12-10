@@ -1,6 +1,9 @@
 {
     "plugins": [
         "https://github.com/heyanLE/EasyBangumi-Extension-animeone/releases",
-        "https://github.com/heyanLE/EasyBangumi-Extension-nivod/releases"
+        "https://github.com/heyanLE/EasyBangumi-Extension-nivod/releases",
+        "https://github.com/heyanLE/EasyBangumi-Extension-mxdm/releases",
+        "https://github.com/heyanLE/EasyBangumi-Extension-mikudm/releases",
+        "https://github.com/heyanLE/EasyBangumi-Extension-555mov/releases"
     ]
 }
