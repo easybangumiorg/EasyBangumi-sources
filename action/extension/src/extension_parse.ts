@@ -263,7 +263,7 @@ async function main() {
 
         let r = {
             apiVersion: storeApiVersion,
-            xtensionsV1 : res
+            extensionsV1 : res
         };
        
 
