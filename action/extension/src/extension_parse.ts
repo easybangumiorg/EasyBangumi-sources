@@ -57,6 +57,7 @@ type ExtensionItem = {
     author: string,
     md5: string,
     fileSize: number,
+    releaseDesc: string,
 };
 
 type ExtensionPushItem = {
@@ -187,6 +188,7 @@ async function parseRepoInfo(publicItem: ExtensionPushItem): Promise<ExtensionIt
         author: user,
         md5: apkInfo.md5,
         fileSize: apkInfo.fileSize,
+        releaseDesc: desc
     }
 }
 
