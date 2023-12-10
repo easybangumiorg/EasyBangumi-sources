@@ -14,7 +14,8 @@ const extensionRepositoryDir = repositoryDir + "/extension";
 const extensionIconDir = extensionRepositoryDir + "/icon";
 const extensionJsonName = "extension.json";
 
-var iconCount = 0;
+
+var storeApiVersion = 1
 
 const tmpDir = "./tmp";
 
@@ -259,7 +260,14 @@ async function main() {
             }
         }
         await deleteFile(extensionRepositoryDir + "/" + extensionJsonName);
-        await writeToFile(extensionRepositoryDir + "/" + extensionJsonName,   JSON.stringify(res));
+
+        let r = {
+            apiVersion: storeApiVersion,
+            xtensionsV1 : res
+        };
+       
+
+        await writeToFile(extensionRepositoryDir + "/" + extensionJsonName,   JSON.stringify(r));
       
     }
 }
