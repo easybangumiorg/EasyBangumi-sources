@@ -12,42 +12,16 @@
 
 ## Scheme
 
+如果需要投稿插件，请先将 apk 发布在 release 中并在 extension.json 中添加自己的插件仓库的 release 界面：
+
 ```json
-// index.json
-[
-    {
-        "name": "",
-        "pkg": "",
-        "icon": "",
-        "apk": "",
-        "version": "",
-        "nsfw": 0,
-        "flag": "",
-        "targetAPI": 1,
-        "sources": [
-            {
-                "name": "",
-                "baseURL": "",
-                "hasCloudflare": 1
-            }
-        ]
-    },
-    {
-        "name": "樱花动漫P",
-        "pkg": "com.heyanle.easybangumi_extension",
-        "icon": "yhdm.png",
-        "apk": "easybangumi-yhdmp-v1.0.apk",
-        "version": "1.0",
-        "nsfw": 0,
-        "flag": "P U",
-        "targetAPI": 1,
-        "sources": [
-            {
-                "name": "樱花动漫P",
-                "baseURL": "https://m.yhdmp.com/",
-                "hasCloudflare": 0
-            }
-        ]
-    }
-]
+{
+    "plugins": [
+        "插件仓库 A",
+        "你的插件仓库 release 地址"
+    ]
+}
 ```
+
+然后发起 mr，通过后 github action 将会自动解析并更新到官方插件市场中。  
+
