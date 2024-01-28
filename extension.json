@@ -1,5 +1,6 @@
 {
     "plugins": [
+        "https://github.com/easybangumiorg/CommunityExtension/releases/tag/1.0",
         "https://github.com/easybangumiorg/EasyBangumi-AllInOne-Public/releases/tag/1.0",
         "https://github.com/heyanLE/EasyBangumi-Extension-animeone/releases/tag/1.0",
         "https://github.com/heyanLE/EasyBangumi-Extension-nivod/releases/tag/1.0",
