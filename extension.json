@@ -1,11 +1,5 @@
 {
     "plugins": [
-        "https://github.com/easybangumiorg/CommunityExtension/releases/tag/1.0",
-        "https://github.com/easybangumiorg/EasyBangumi-AllInOne-Public/releases/tag/1.0",
-        "https://github.com/heyanLE/EasyBangumi-Extension-animeone/releases/tag/1.0",
-        "https://github.com/heyanLE/EasyBangumi-Extension-nivod/releases/tag/1.0",
-        "https://github.com/heyanLE/EasyBangumi-Extension-mxdm/releases/tag/1.0",
-        "https://github.com/heyanLE/EasyBangumi-Extension-mikudm/releases/tag/1.0",
-        "https://github.com/heyanLE/EasyBangumi-Extension-555mov/releases/tag/1.0"
+        "https://github.com/easybangumiorg/CommunityExtension/releases/tag/1.0"
     ]
 }
